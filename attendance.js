@@ -18,9 +18,17 @@ const CONFIG = {
     supabaseKey: 'YOUR_SUPABASE_ANON_KEY'
 };
 
-// Initialize Supabase Client
-const supabase = window.supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseKey);
-
+// Initialize Supabase Client safely
+let supabase = null;
+try {
+    if (CONFIG.supabaseUrl !== 'YOUR_SUPABASE_URL' && CONFIG.supabaseUrl.startsWith('http')) {
+        supabase = window.supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseKey);
+    } else {
+        console.warn("Supabase is not configured yet. Set valid URL and Key in CONFIG to enable logging.");
+    }
+} catch (e) {
+    console.error("Failed to initialize Supabase. Check your configuration.", e);
+}
 // DOM Elements
 const geoStatus = document.getElementById('geoStatus');
 const messageBox = document.getElementById('messageBox');
@@ -77,6 +85,11 @@ async function logAttendance(method) {
     const employeeIdInput = document.getElementById('employeeId').value.trim();
     if (!employeeIdInput) {
         showMessage('Attendance verified locally, but failed to log to server: Employee ID is missing.', 'error');
+        return false;
+    }
+
+    if (!supabase) {
+        showMessage('Attendance verified locally, but Supabase is not configured to save it.', 'success');
         return false;
     }
 
