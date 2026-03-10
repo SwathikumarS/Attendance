@@ -1,0 +1,27 @@
+{
+    "name": "Attendance Control Antigravity",
+    "short_name": "Attendance",
+    "description": "Secure Identity Protocol System for marking attendance via Biometrics, Geolocation, and NFC.",
+    "start_url": "./attendance.html",
+    "display": "standalone",
+    "background_color": "#0f172a",
+    "theme_color": "#0f172a",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f310.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f310.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/72x72/1f310.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}
